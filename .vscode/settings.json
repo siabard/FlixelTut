@@ -1,4 +1,10 @@
 {
+	"haxe.executable": {
+		"path": "/usr/bin/haxe",
+		"env": {
+			"HAXE_STD_PATH": "/usr/share/haxe/std"
+		}
+	},
 	"search.exclude": {
 		"export/**/*.hx": true
 	}
