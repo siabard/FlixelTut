@@ -39,5 +39,20 @@
   <object id="1" name="player" x="90" y="105">
    <point/>
   </object>
+  <object id="2" name="coin" x="122" y="121">
+   <point/>
+  </object>
+  <object id="3" name="coin" x="138" y="137">
+   <point/>
+  </object>
+  <object id="4" name="enemy" x="160" y="160" etype="1">
+   <point/>
+  </object>
+  <object id="5" name="enemy" x="320" y="192" etype="0">
+   <point/>
+  </object>
+  <object id="6" name="enemy" x="416" y="384" etype="1">
+   <point/>
+  </object>
  </objectgroup>
 </map>
