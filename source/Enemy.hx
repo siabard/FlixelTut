@@ -6,9 +6,11 @@ import flixel.math.FlxPoint;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 
+using flixel.util.FlxSpriteUtil;
+
 class Enemy extends FlxSprite {
 	public var speed:Float = 140;
-	public var eType(default, null):Int;
+	public var etype(default, null):Int;
 
 	var _brain:FSM;
 	var _idleTmr:Float;
@@ -19,9 +21,9 @@ class Enemy extends FlxSprite {
 
 	public function new(X:Float = 0, Y:Float = 0, EType:Int) {
 		super(X, Y);
-		eType = EType;
+		etype = EType;
 
-		loadGraphic("assets/images/enemy-" + eType + ".png", true, 16, 16);
+		loadGraphic("assets/images/enemy-" + etype + ".png", true, 16, 16);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		animation.add("d", [0, 1, 0, 2], 6, false);
@@ -83,7 +85,7 @@ class Enemy extends FlxSprite {
 
 			switch (facing) {
 				case FlxObject.LEFT, FlxObject.RIGHT:
-					animation.play("tr");
+					animation.play("lr");
 				case FlxObject.UP:
 					animation.play("u");
 				case FlxObject.DOWN:
@@ -94,7 +96,16 @@ class Enemy extends FlxSprite {
 	}
 
 	override public function update(elapsed:Float):Void {
+		if (this.isFlickering())
+			return;
 		_brain.update();
 		super.update(elapsed);
+	}
+
+	public function changeEnemy(EType:Int):Void {
+		if (etype != EType) {
+			etype = EType;
+			loadGraphic("assets/images/enemy-" + etype + ".png", true, 16, 16);
+		}
 	}
 }
